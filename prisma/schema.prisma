@@ -36,6 +36,7 @@ model transactions {
   id         Int               @id @default(autoincrement())
   type       transactions_type
   quantity   Int
+  value      Decimal           @db.Decimal(10, 2)
   symbol     String            @db.VarChar(16)
   user_id    Int
   created_at DateTime?         @default(now()) @db.DateTime(0)
@@ -43,6 +44,13 @@ model transactions {
   users      users             @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "transaction_FK")
 
   @@index([user_id], map: "transaction_FK")
+}
+
+model stock_caches {
+  id         Int       @id @default(autoincrement())
+  symbol     String    @db.VarChar(16)
+  value      Decimal   @db.Decimal(10, 2)
+  created_at DateTime? @default(now()) @db.DateTime(0)
 }
 
 enum transactions_type {
