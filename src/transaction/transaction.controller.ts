@@ -10,12 +10,13 @@ import {
 } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Auth } from 'src/auth/auth.decorator';
 import { users } from '@prisma/client';
 
 @ApiTags('Transactions')
+@ApiBearerAuth()
 @Controller('transactions')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) { }

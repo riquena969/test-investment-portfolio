@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Investment Portfolio')
     .setDescription('Demo api to buy and sell stocks.')
     .setVersion('1.0')
